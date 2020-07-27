@@ -10,3 +10,7 @@ h4 span {
   color: #a1a1a1;
   font-style: italic;
 }
+
+.input-filter{
+  width:100%;
+}

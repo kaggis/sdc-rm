@@ -30,6 +30,11 @@ function App() {
   const columns = React.useMemo(
     () => [
       {
+        Header:'Name',
+        accessor:'Name',
+        filter:'text'
+      },
+      {
         Header: 'URL',
         accessor: 'url', 
         filter: "text",
@@ -65,6 +70,7 @@ function App() {
 
   return (
     <input
+      className="input-filter"
       value={filterValue || ''}
       onChange={e => {
         setFilter(e.target.value || undefined) 
@@ -109,7 +115,7 @@ const defaultColumn = React.useMemo(
 
 
   return (
-    <div className="col-8 mx-auto">
+    <div className="p-4 table-responsive mx-auto">
       <h4 style={{ color: "#686868" }} className="pt-4 text-center"><img className="mr-2" src={logo} alt="seadatanet" height="60" /><span>SeaDataCloud</span> Replication Manager Version status</h4>
       <table className="table table-striped table-hover table-light" {...getTableProps()}>
         <thead className="thead-light">
@@ -137,7 +143,7 @@ const defaultColumn = React.useMemo(
               <tr {...row.getRowProps()}>
                 {row.cells.map(cell => {
                   return <td {...cell.getCellProps()}
-                  className={(cell.value==="Unknown") ? "text-grey" : "text-normal"}  
+                  className={(cell.value !== undefined && cell.value.toLowerCase()==="unknown") ? "text-grey" : "text-normal"}  
                   >{cell.render('Cell')}</td>
                 })}
               </tr>
